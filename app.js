@@ -6,6 +6,7 @@ const app = express();
 
 
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static('public'));
 
 app.get('/', (req,res)=>{
    
@@ -32,12 +33,15 @@ app.post('/', (req,res)=>{
             const icon = weatherData.current.condition.icon;
 
             
-            res.write('<h1 style="color:#4751c7;font-family: Cambria, Cochin, Georgia;text-align:center">The weather today is: '+ weatherDesc + '</h1>');
+            res.write('<h1 style="color:#4751c7;font-family: Cambria, Cochin, Georgia;text-align:center">The weather today is '+ weatherDesc + '</h1>');
             res.write('<h1 style="color:#db2c4d;font-family: Cambria, Cochin, Georgia;text-align:center">Temperature in ' + place + ' is ' + temp + ' degrees celsius!</h1>');
-            res.write('<img style="display:block; margin-left:auto; margin-right: auto; width:10%;" src =' + icon + '>')
+            res.write('<img style="display:block; margin-left:auto; margin-right: auto; width:10%;" src =' + icon + '>');            
             res.send();
-        })
-    })   
+            
+        })  
+    })
+    
+    
 
     
 })
